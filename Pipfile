@@ -1,0 +1,40 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+fastapi = {extras = ["standard"], version = "==0.115.6"}
+fastapi-login = "==1.10.3"
+pyyaml = "==6.0.2"
+requests = "==2.32.3"
+authlib = "==1.4.0"
+itsdangerous = "==2.2.0"
+dependency-injector = "==4.45.0"
+pydantic = {extras = ["email"], version = "==2.10.5"}
+pydantic-settings = "==2.7.1"
+google-cloud-firestore = "==2.19.0"
+
+[dev-packages]
+pytest = "==8.3.3"
+pytest-rich = "==0.2.0"
+pytest-lazy-fixtures = "==1.1.1"
+pytest-cov = "==5.0.0"
+pytest-recording = "==0.13.2"
+pytest-profiling = "==1.8.1"
+requests-mock = "==1.12.1"
+pre-commit = "==4.0.0"
+polyfactory = "==2.18.1"
+syrupy = "==4.8.0"
+tach = "==0.20.0"
+faker = "==33.3.1"
+pyjwt = "==2.10.1"
+
+[requires]
+python_version = "3.12"
+
+[scripts]
+serve = "python -m app"
+test = "pytest ."
+install-hooks = "pre-commit install --install-hooks --hook-type pre-commit --hook-type commit-msg"
+format = "pre-commit run --all-files"
