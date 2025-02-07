@@ -16,7 +16,7 @@ jobs:
     - uses: actions/checkout@v4
       with:
         repository: ELC/IPBookPlatform
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.TOKEN }}
         path: 'base'
 
     - name: Clean Old Content
