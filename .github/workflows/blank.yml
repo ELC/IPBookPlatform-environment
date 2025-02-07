@@ -1,0 +1,39 @@
+name: Update Dependencies
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+
+jobs:
+  update-dependencies:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        path: 'environment'
+
+    - uses: actions/checkout@v4
+      with:
+        repository: ELC/IPBookPlatform
+        token: ${{ secrets.GITHUB_TOKEN }}
+        path: 'base'
+
+    - name: Clean Old Content
+      run: |
+        cd environment
+        git rm Pipfile || echo "No Pipfile"
+        git rm Pipfile.lock || echo "No Pipfile.lock"
+
+    - name: Update Content
+      run: |
+        cp -rf base/Pipfile environment/Pipfile
+        cp -rf base/Pipfile.lock environment/Pipfile.lock
+
+    - name: Commit Dependencies Update
+      run: |
+        cd environment
+        git config --global user.name 'ELC'
+        git config --global user.email '14986783+ELC@users.noreply.github.com'
+        git add --all Pipfile Pipfile.lock
+        git commit -m "Auto-update dependencies" && git push || echo "No changes to commit"
