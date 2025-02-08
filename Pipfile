@@ -11,18 +11,17 @@ pandas = "==2.2.3"
 matplotlib = "==3.10.0"
 jupyter = "==1.1.1"
 jupyter-book = {extras=["sphinx"], version="==1.0.3"}
-
-# Required by sphinx
 tomli = "==2.2.1"
-
-# Reqiored bu ipython
 exceptiongroup = "==1.2.2"
 
 [dev-packages]
-
+pre-commit = "==4.1.0"
+pre-commit-uv = "==4.1.4"
+uv = "==0.5.29"
 
 [requires]
 python_version = "3.11"
 
 [scripts]
 build = "bash ../.github/workflows/build_book.sh"
+format = "pre-commit run --all-files"
