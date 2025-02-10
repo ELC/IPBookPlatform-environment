@@ -3,10 +3,6 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 name = "pypi"
 
-[[source]]
-url = "https://gitlab.tudelft.nl/api/v4/projects/11239/packages/pypi/simple"
-verify_ssl = true
-name = "gitlabtudelft"
 
 [packages]
 numpy = "==2.2.2"
@@ -18,14 +14,7 @@ jupyter = "==1.1.1"
 jupyter-book = {extras=["sphinx"], version="==1.0.3"}
 tomli = "==2.2.1"
 exceptiongroup = "==1.2.2"
-sphinx-thebe = {version = "~=0.9.9", index = "gitlabtudelft"}
-teachbooks = "*"
-jupyterbook-patches = "*"
-sphinx-image-inverter = "*"
-download_link_replacer = "*"
-sphinx-exercise = "*"
-teachbooks-sphinx-tippy = "*"
-
+sphinx-thebe = "==0.3.1"
 
 [dev-packages]
 pre-commit = "==4.1.0"
