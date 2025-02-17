@@ -27,8 +27,8 @@ jobs:
 
     - name: Update Content
       run: |
-        cp -rf base/Pipfile environment/Pipfile
-        cp -rf base/Pipfile.lock environment/Pipfile.lock
+        cp --force base/Pipfile environment/Pipfile
+        cp --force base/Pipfile.lock environment/Pipfile.lock
 
     - name: Commit Dependencies Update
       run: |
@@ -36,4 +36,4 @@ jobs:
         git config --global user.name 'ELC'
         git config --global user.email '14986783+ELC@users.noreply.github.com'
         git add --all Pipfile Pipfile.lock
-        git commit -m "Auto-update dependencies" && git push || echo "No changes to commit"
+        git commit --message "Auto-update dependencies" && git push || echo "No changes to commit"
