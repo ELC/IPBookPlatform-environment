@@ -28,7 +28,6 @@ USER root
 RUN chmod -R 777 run_xvfb_and_forward.sh
 USER ubuntu
 
-ENV USER="ubuntu"
 ENV DISPLAY=":1"
 ENV OCTAVE_EXECUTABLE="/usr/bin/octave"
 
