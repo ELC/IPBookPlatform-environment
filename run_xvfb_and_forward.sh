@@ -6,7 +6,6 @@ set -e
 Xvfb :1 -screen 0 1024x768x16 &
 export USER=ubuntu
 export DISPLAY=:1
-export XDG_RUNTIME_DIR=/tmp/xdg_runtime_dir
 export OCTAVE_EXECUTABLE="$(command -v octave)"
 export LIBGL_ALWAYS_SOFTWARE=1
 
