@@ -27,6 +27,11 @@ COPY . .
 USER root
 RUN chmod -R 777 run_xvfb_and_forward.sh
 USER ubuntu
+
+ENV USER="ubuntu"
+ENV DISPLAY=":1"
+ENV OCTAVE_EXECUTABLE="/usr/bin/octave"
+
 ENTRYPOINT ["/home/ubuntu/run_xvfb_and_forward.sh"]
 
 # docker build -t my_image . && docker run --rm -it my_image octave --eval "available_graphics_toolkits()"
