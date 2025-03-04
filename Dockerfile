@@ -23,9 +23,10 @@ RUN uv pip install --system --requirement requirements.txt && \
     pyenv rehash
 
 WORKDIR "/home/ubuntu"
-USER ubuntu
 COPY . .
-
+USER root
+RUN chmod -R 777 run_xvfb_and_forward.sh
+USER ubuntu
 ENTRYPOINT ["/home/ubuntu/run_xvfb_and_forward.sh"]
 
 # docker build -t my_image . && docker run --rm -it my_image octave --eval "available_graphics_toolkits()"
