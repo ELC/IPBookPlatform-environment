@@ -11,7 +11,7 @@ RUN --mount=type=cache,target=/root/.cache/uv \
     --mount=type=bind,source=uv.lock,target=uv.lock \
     --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
     uv sync --frozen --no-install-project && \
-    ln .venv/bin/jupyter /usr/bin/jupyter
+    ln $(find .venv/bin -type f) /usr/bin/
 
 WORKDIR "/home/ubuntu"
 COPY . .
