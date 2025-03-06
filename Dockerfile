@@ -1,7 +1,7 @@
 FROM gnuoctave/octave:9.4.0
 
 RUN apt-get update && \
-    apt-get install -y git sqlite3 libsqlite3-dev xvfb \
+    apt-get install -y git libsqlite3-dev libffi-dev xvfb \
                            octave-control octave-image octave-io octave-optim \
                            octave-signal octave-statistics \
                            libgl1-mesa-dri libglu1-mesa
