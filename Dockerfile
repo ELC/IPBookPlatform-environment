@@ -11,7 +11,8 @@ RUN --mount=type=cache,target=/root/.cache/uv \
     --mount=type=bind,source=uv.lock,target=uv.lock \
     --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
     uv sync --frozen --no-install-project --compile-bytecode && \
-    ln $(find .venv/bin -type f) /usr/bin/
+    ln $(find .venv/bin -type f) /usr/bin/ && \
+    ln /usr/bin/jupyter-lab /usr/bin/jupyterlab
 
 WORKDIR "/home/ubuntu"
 COPY --chown=ubuntu:ubuntu . .
