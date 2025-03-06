@@ -21,6 +21,7 @@ USER ubuntu
 ENV DISPLAY=":1"
 ENV OCTAVE_EXECUTABLE="/usr/bin/octave"
 
-ENTRYPOINT ["/home/ubuntu/run_xvfb_and_forward.sh"]
+ENTRYPOINT ["bash", "-c", "set -e; Xvfb $DISPLAY -screen 0 1024x768x16 & sleep 2 && exec \"$@\" 2>&1 | tee .jupyter-server-log.txt", "--"]
+
 
 # docker build -t my_image . && docker run --rm -it my_image octave --eval "available_graphics_toolkits()"
