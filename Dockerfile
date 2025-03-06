@@ -4,23 +4,14 @@ RUN apt-get update && \
     apt-get install -y git libsqlite3-dev libffi-dev xvfb \
                            octave-control octave-image octave-io octave-optim \
                            octave-signal octave-statistics \
-                           libgl1-mesa-dri libglu1-mesa
-RUN git clone --depth=1 https://github.com/pyenv/pyenv.git "/home/ubuntu/.pyenv"
+                           libgl1-mesa-dri libglu1-mesa mesa-utils
 
-ENV PYTHON_VERSION=3.11.9
-ENV PYENV_ROOT="/home/ubuntu/.pyenv"
-ENV PATH="${PYENV_ROOT}/shims:${PYENV_ROOT}/bin:${PATH}"
-
-RUN pyenv install ${PYTHON_VERSION} && \
-    pyenv global ${PYTHON_VERSION}
-
-RUN --mount=type=bind,source=Pipfile,target=Pipfile \
-    --mount=type=bind,source=Pipfile.lock,target=Pipfile.lock \
-    pip install --no-cache --upgrade pip pipenv==2024.4.1 uv==0.6.3 && \
-    pipenv requirements --dev > requirements.txt
-
-RUN uv pip install --system --requirement requirements.txt && \
-    pyenv rehash
+COPY --from=ghcr.io/astral-sh/uv:0.6.3 /uv /uvx /bin/
+RUN --mount=type=cache,target=/root/.cache/uv \
+    --mount=type=bind,source=uv.lock,target=uv.lock \
+    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
+    uv sync --frozen --no-install-project && \
+    ln .venv/bin/jupyter /usr/bin/jupyter
 
 WORKDIR "/home/ubuntu"
 COPY . .
