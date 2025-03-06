@@ -10,7 +10,7 @@ COPY --from=ghcr.io/astral-sh/uv:0.6.3 /uv /uvx /bin/
 RUN --mount=type=cache,target=/root/.cache/uv \
     --mount=type=bind,source=uv.lock,target=uv.lock \
     --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
-    uv sync --frozen --no-install-project && \
+    uv sync --frozen --no-install-project --compile-bytecode && \
     ln $(find .venv/bin -type f) /usr/bin/
 
 WORKDIR "/home/ubuntu"
