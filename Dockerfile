@@ -14,9 +14,7 @@ RUN --mount=type=cache,target=/root/.cache/uv \
     ln $(find .venv/bin -type f) /usr/bin/
 
 WORKDIR "/home/ubuntu"
-COPY . .
-USER root
-RUN chmod -R 777 run_xvfb_and_forward.sh
+COPY --chown=ubuntu:ubuntu . .
 USER ubuntu
 
 ENV DISPLAY=":1"
