@@ -4,7 +4,7 @@ RUN apt-get update && \
     apt-get install -y git sqlite3 libsqlite3-dev xvfb \
                            octave-control octave-image octave-io octave-optim \
                            octave-signal octave-statistics \
-                           libgl1-mesa-dri libglu1-mesa mesa-utils
+                           libgl1-mesa-dri libglu1-mesa
 RUN git clone --depth=1 https://github.com/pyenv/pyenv.git "/home/ubuntu/.pyenv"
 
 ENV PYTHON_VERSION=3.11.9
