@@ -1,0 +1,14 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+jupyter = "==1.1.1"
+ipython = "<9"
+octave-kernel = "==0.36.0"
+
+[dev-packages]
+
+[requires]
+python_version = "3.11"
